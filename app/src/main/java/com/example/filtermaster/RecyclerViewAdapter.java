@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    ArrayList<Item> items;
+    ArrayList<Item> items; // 아이템을 담을 어레이 리스트
     Activity activity;
 
     public RecyclerViewAdapter(ArrayList<Item> items, Activity activity) {
@@ -23,10 +23,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.maple_item, null);
-        RecyclerView.ViewHolder viewHolder = new RecyclerView.ViewHolder(itemView);
-        return viewHolder;
+        // ViewHolder viewHolder = new ViewHolder(itemView);
+        return new ViewHolder(itemView);
     }
 
     @Override
@@ -40,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public void filterList(ArrayList<Item> filteredList) {
+        // 전달 받은 필터링된 아이템 어레이 리스트로 변경함
         items = filteredList;
         notifyDataSetChanged();
     }
@@ -51,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tv = itemView.findViewById(R.id.name);
+            tv = (TextView)itemView.findViewById(R.id.name);
         }
     }
 }
