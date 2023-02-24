@@ -1,10 +1,9 @@
 package com.example.filtermaster;
 
-public class Item {
+public class MainModel {
+    private String name;
 
-    String name;
-
-    public Item(String name) {
+    public MainModel(String name) {
         this.name = name;
     }
 

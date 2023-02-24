@@ -13,19 +13,29 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    ArrayList<Item> items; // 아이템을 담을 어레이 리스트
-    Activity activity;
+    private ArrayList<MainModel> items;
+    private Activity activity;
 
-    public RecyclerViewAdapter(ArrayList<Item> items, Activity activity) {
+    public RecyclerViewAdapter(ArrayList<MainModel> items, Activity activity) {
         this.items = items;
         this.activity = activity;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        TextView tv;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            tv = (TextView)itemView.findViewById(R.id.tv);
+        }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.maple_item, null);
-        // ViewHolder viewHolder = new ViewHolder(itemView);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, null);
         return new ViewHolder(itemView);
     }
 
@@ -39,20 +49,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return items.size();
     }
 
-    public void filterList(ArrayList<Item> filteredList) {
-        // 전달 받은 필터링된 아이템 어레이 리스트로 변경함
+    public void filterList(ArrayList<MainModel> filteredList) {
+        // 전달 받은 필터링된 리스트로 변경함
         items = filteredList;
         notifyDataSetChanged();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
-        TextView tv;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            tv = (TextView)itemView.findViewById(R.id.name);
-        }
     }
 }
