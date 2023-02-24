@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "FilterMaster"
+rootProject.name = "SearchFilter"
